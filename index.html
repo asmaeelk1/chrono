@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p id="time">00:00:00</p>
+        <input type="button" id="start" value="start">
+        <input type="button" id="pause" value="pause">
+        <input type="button" id="reset" value="reset">
+
+
+    </div>
+
+    <script>
+let time = document.getElementById("time")
+let start = document.getElementById("start")
+let pause = document.getElementById("pause")
+let reset = document.getElementById("reset")
+let h=0
+let m = 0
+let s=0
+let t 
+function chrono(){
+    start.disabled = true
+    s++
+    if(s>=60){
+        s = 0
+        m++
+        if(m>=60)
+        {
+            m = 0
+            h++
+        }
+    }
+    time.innerHTML = ((h > 9) ? h : "0" + h )+ ":" + ((m > 9) ? m : "0" + m )+ ":" + ( (s > 9) ? s : "0" + s)
+}
+start.onclick = function (){
+    t = setInterval(chrono, 1000)
+    
+}
+pause.onclick = function(){
+    clearInterval(t)
+    start.disabled = false
+}
+reset.onclick = function(){
+    s = 0
+    m = 0
+    h = 0
+    clearInterval(t)
+    start.disabled = false
+    time.innerHTML="00:00:00"
+}
+    </script>
+</body>
+</html>
